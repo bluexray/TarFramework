@@ -15,6 +15,9 @@ namespace SocketTest
 
         static void Main(string[] args)
         {
+            var b = new Byte();
+            var a = 0xff;
+            Console.WriteLine(b = (Byte)a);
 
             socketServer.BinaryInput = new BinaryInputHandler(BinaryInputHandler);//数据处理代理
             socketServer.Connetions = new ConnectionFilter(ConnectionFilter);//连接代理
