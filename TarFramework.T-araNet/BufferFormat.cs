@@ -258,47 +258,47 @@ namespace TarFramework.T_araNet.IOCP
         /// <returns></returns>
         public static byte[] FormatFCA(object o, FDataExtraHandle dataExtra)
         {
-            //Type otype = o.GetType();
-            //Attribute[] Attributes = Attribute.GetCustomAttributes(otype);
+            Type otype = o.GetType();
+            Attribute[] Attributes = Attribute.GetCustomAttributes(otype);
 
-            //foreach (Attribute p in Attributes)
-            //{
-            //    FormatClassAttibutes fca = p as FormatClassAttibutes;
+            foreach (Attribute p in Attributes)
+            {
+                //FormatClassAttibutes fca = p as FormatClassAttibutes;
 
-            //    if (fca != null)
-            //    {
-            //        var bufflist = new List<byte>();
+                if (p != null)
+                {
+                    var bufflist = new List<byte>();
 
-            //        bufflist.AddRange(GetSocketBytes(fca.BufferCmdType));
+                    bufflist.AddRange(GetSocketBytes(0x3e8));
 
-            //        byte[] classdata = SerializeObject(o);
-            //        bufflist.AddRange(GetSocketBytes(classdata.Length));
-            //        bufflist.AddRange(classdata);
+                    byte[] classdata = SerializeObject(o);
+                    bufflist.AddRange(GetSocketBytes(classdata.Length));
+                    bufflist.AddRange(classdata);
 
-            //        if (dataExtra != null)
-            //        {
-            //            byte[] fdata = dataExtra(bufflist.ToArray());
-            //            bufflist.Clear();
-            //            bufflist.AddRange(fdata);
-            //        }
+                    if (dataExtra != null)
+                    {
+                        byte[] fdata = dataExtra(bufflist.ToArray());
+                        bufflist.Clear();
+                        bufflist.AddRange(fdata);
+                    }
 
 
-            //        int l = bufflist.Count + 4;
-            //        byte[] data = GetSocketBytes(l);
-            //        for (int i = data.Length - 1; i >= 0; i--)
-            //        {
-            //            bufflist.Insert(0, data[i]);
-            //        }
+                    int l = bufflist.Count + 4;
+                    byte[] data = GetSocketBytes(l);
+                    for (int i = data.Length - 1; i >= 0; i--)
+                    {
+                        bufflist.Insert(0, data[i]);
+                    }
 
-            //        byte[] datap = new byte[bufflist.Count];
+                    byte[] datap = new byte[bufflist.Count];
 
-            //        bufflist.CopyTo(0, datap, 0, datap.Length);
+                    bufflist.CopyTo(0, datap, 0, datap.Length);
 
-            //        bufflist.Clear();
+                    bufflist.Clear();
 
-            //        return datap;
-            //    }
-            //}
+                    return datap;
+                }
+            }
 
             throw new EntryPointNotFoundException("无法找到 FormatClassAttibutes 标签");
         }

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2AAEC711-417D-43D3-B9D2-060E71CFDE3B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{2A7B3555-6FED-4533-8D81-383F5D9109A8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TarFramework.T_araNet</RootNamespace>
-    <AssemblyName>TarFramework.T-araNet</AssemblyName>
+    <RootNamespace>SocketClinetTest</RootNamespace>
+    <AssemblyName>SocketClinetTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,32 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgileIPEndPoint.cs" />
-    <Compile Include="BufferManager.cs" />
-    <Compile Include="BuffList.cs" />
-    <Compile Include="BufferReadStream.cs" />
-    <Compile Include="IBufferPool.cs" />
-    <Compile Include="BufferFormat.cs" />
-    <Compile Include="IOCP\ConnectionPool.cs" />
-    <Compile Include="IOCP\CustomSocket.cs" />
-    <Compile Include="IOCP\SocketAsyncEventArgsPool.cs" />
-    <Content Include="IOCP\test.txt" />
-    <Compile Include="IServer.cs" />
-    <Compile Include="ISessionEvent.cs" />
-    <Compile Include="IStringEncoder.cs" />
-    <Compile Include="IOCP\LogOutEventArgs.cs" />
-    <Compile Include="IOCP\LogType.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DisconnectType.cs" />
-    <Compile Include="ExceptionEventArgs.cs" />
-    <Compile Include="ReadBytes.cs" />
-    <Compile Include="SessionBase.cs" />
-    <Compile Include="SessionCoreInfo.cs" />
-    <Compile Include="SessionEventArgs.cs" />
-    <Compile Include="SessionExceptionEventArgs.cs" />
-    <Compile Include="SessionState.cs" />
-    <Compile Include="SocketServer.cs" />
-    <Compile Include="SocketServerBase.cs" />
+    <Compile Include="SocketClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TarFramework.Core\TarFramework.Core.csproj">
+      <Project>{1f4ae8a6-c59a-4f77-ba9a-10d2b6d65842}</Project>
+      <Name>TarFramework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TarFramework.T-araNet\TarFramework.T-araNet.csproj">
+      <Project>{2aaec711-417d-43d3-b9d2-060e71cfde3b}</Project>
+      <Name>TarFramework.T-araNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

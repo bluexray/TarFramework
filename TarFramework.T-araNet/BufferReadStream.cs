@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace TarFramework.T_araNet
 {
     public class BufferReadStream:Stream
     {
-        
-        protected byte[] Datas { get; set; }
+                protected byte[] Datas { get; set; }
 
         protected int _capacity;
         protected int _length;
@@ -28,9 +27,7 @@ namespace TarFramework.T_araNet
           
             base.Dispose(disposing);
         }
-
-
-        protected void thowStreamClose()
+        protected void ThowStreamClose()
         {
             throw new ObjectDisposedException(null, "流已经关闭了");
         }
@@ -45,7 +42,7 @@ namespace TarFramework.T_araNet
             {
                 if (!this._canRead)
                 {
-                    thowStreamClose();
+                    ThowStreamClose();
                 }
 
 
@@ -166,7 +163,7 @@ namespace TarFramework.T_araNet
             {
                 if (!this._canRead)
                 {
-                    thowStreamClose();
+                    ThowStreamClose();
                 }
 
                 if (value < 0L)
@@ -198,7 +195,7 @@ namespace TarFramework.T_araNet
         {
             if (!this._canRead)
             {
-                thowStreamClose();
+                ThowStreamClose();
             }
                       
             if (buffer == null)
@@ -236,7 +233,7 @@ namespace TarFramework.T_araNet
             }
             else
             {
-                Buffer.BlockCopy(this.Datas, this._position, buffer, offset, num);
+                System.Buffer.BlockCopy(this.Datas, this._position, buffer, offset, num);
             }
             this._position += num;
             return num;
@@ -247,7 +244,7 @@ namespace TarFramework.T_araNet
         {
             if (!this._canRead)
             {
-                thowStreamClose();
+                ThowStreamClose();
             }
 
             if (offset > 0x7fffffffL)
@@ -307,7 +304,7 @@ namespace TarFramework.T_araNet
         {
             if (!this._canRead)
             {
-                thowStreamClose();
+                ThowStreamClose();
             }
             if (!this._canWrile)
             {
@@ -359,7 +356,7 @@ namespace TarFramework.T_araNet
             }
             else
             {
-                Buffer.BlockCopy(buffer, offset, this.Datas, this._position, count);
+                System.Buffer.BlockCopy(buffer, offset, this.Datas, this._position, count);
             }
 
             this._position = num;          
@@ -439,7 +436,7 @@ namespace TarFramework.T_araNet
         {
             if (!this._canRead)
             {
-                thowStreamClose();
+                ThowStreamClose();
             }
 
             if (postion > _position)
@@ -451,7 +448,7 @@ namespace TarFramework.T_araNet
             int num = Datas.Length-postion;
             
 
-            byte[] dst = new byte[num];
+            var dst = new byte[num];
 
             this._length = _length - postion;
 
@@ -460,7 +457,7 @@ namespace TarFramework.T_araNet
 
             if (this._length > 0)
             {
-                Buffer.BlockCopy(Datas, postion, dst, 0, this._length);
+                System.Buffer.BlockCopy(Datas, postion, dst, 0, this._length);
             }
                         
             this.Datas = dst;
@@ -523,7 +520,7 @@ namespace TarFramework.T_araNet
 
             if (!this._canRead)
             {
-                thowStreamClose();
+                ThowStreamClose();
             }
 
             if (_length == 0)
