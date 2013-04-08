@@ -15,10 +15,10 @@ namespace TarFramework.Core.DataStruct
         public CommondInfo commond;//包命令
         public byte[] key = new byte[8];//包密钥
         public byte EOF { get; set; }//包结束符
+        public int Length { get; set; }
 
         public void Dispose()
         {
-            var b = new byte();
             throw new NotImplementedException();
         }
     }

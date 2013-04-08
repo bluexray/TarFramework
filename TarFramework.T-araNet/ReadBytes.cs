@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -166,7 +167,7 @@ namespace TarFramework.T_araNet
                 current = Interlocked.Add(ref current, 4);
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 values = 0;
                 return false;
@@ -365,51 +366,52 @@ namespace TarFramework.T_araNet
 
         #region 对象
 
-        ///// <summary>
-        ///// 把字节反序列化成相应的对象
-        ///// </summary>
-        ///// <param name="pBytes">字节流</param>
-        ///// <returns>object</returns>
-        //protected virtual object DeserializeObject(byte[] pBytes)
+        /// <summary>
+        /// 把字节反序列化成相应的对象
+        /// </summary>
+        /// <param name="pBytes">字节流</param>
+        /// <returns>object</returns>
+        //protected virtual T DeserializeObject<T>(byte[] pBytes)
         //{
         //    object _newOjb = null;
         //    if (pBytes == null)
-        //        return _newOjb;
+        //        return (T)_newOjb;
+
         //    System.IO.MemoryStream _memory = new System.IO.MemoryStream(pBytes);
         //    _memory.Position = 0;
         //    BinaryFormatter formatter = new BinaryFormatter();
-        //  //  formatter.TypeFormat = System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString;
+        //    //  formatter.TypeFormat = System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString;
         //    _newOjb = formatter.Deserialize(_memory);
         //    _memory.Close();
-        //    return _newOjb;
+        //    return (T)_newOjb;
         //}
 
         /// <summary>
         /// 把字节反序列化成相应的对象
         /// </summary>
         /// <param name="pBytes">字节流</param>
-        /// <returns>object</returns>
+        ///// <returns>object</returns>
         public virtual T DeserializeObject<T>(byte[] pBytes)
         {
 
-            string xml = Encoding.UTF8.GetString(pBytes);
+        //    string xml = Encoding.UTF8.GetString(pBytes);
 
 
-            Object result = new object();
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            using (Stream stream = new MemoryStream(Encoding.Unicode.GetBytes(xml)))
-            {
-                XmlReader xmlReader = XmlReader.Create(stream);
+        //    Object result = new object();
+        //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+        //    using (Stream stream = new MemoryStream(Encoding.Unicode.GetBytes(xml)))
+        //    {
+        //        XmlReader xmlReader = XmlReader.Create(stream);
 
-                result = (T)xmlSerializer.Deserialize(xmlReader);
+        //        result = (T)xmlSerializer.Deserialize(xmlReader);
 
-                xmlReader.Close();
+        //        xmlReader.Close();
 
-            }
-            return (T)result;
+        //    }
+        //    return (T)result;
 
-            //Polenter.Serialization.SharpSerializer Serializer = new Polenter.Serialization.SharpSerializer(true);
-            //return Serializer.Deserialize<T>(pBytes);
+            Polenter.Serialization.SharpSerializer Serializer = new Polenter.Serialization.SharpSerializer(true);
+            return Serializer.Deserialize<T>(pBytes);
 
         }
 

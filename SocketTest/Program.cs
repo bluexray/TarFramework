@@ -81,12 +81,14 @@ namespace SocketTest
                 {  //read.Read系列函数是不会产生异常的
                     int id;
                     string mn;
-                    Guid guid;
-                    if (read.ReadInt32(out id) && read.ReadString(out mn) && read.ReadObject<Guid>(out guid))
+                    SocketClinetTest.PPo  temp;
+                    if (read.ReadInt32(out id) && read.ReadObject<SocketClinetTest.PPo>(out temp))
                     {
 
-                        Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", id, mn, guid, read.Length);
-
+                        if (temp != null)
+                        {
+                            Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", temp.Id, temp.Message, temp.guid, read.Length);
+                        } 
                     }
 
                     //根据命令读取数据包

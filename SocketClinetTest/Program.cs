@@ -27,33 +27,32 @@ namespace SocketClinetTest
 
 
                     var temp = new PPo();
-                    temp.Id = 1;
+                    temp.Id = 2;
                     temp.Message = "通过对象通讯";
-                    temp.guid = new List<Guid>();
+                    temp.guid =Guid.NewGuid();
 
-                    for (int i = 0; i < 100; i++)
-                    {
-                        temp.guid.Add(Guid.NewGuid());
-                    }
+                    //for (int i = 0; i < 100; i++)
+                    //{
+                    //    temp.guid.Add(Guid.NewGuid());
+                    //}
                     client.SendTo(BufferFormat.FormatFCA(temp));  //讲一个PPO对象发送出去
 
+                    // Console.ReadLine();
+
+                    //BufferFormat buffmat = new BufferFormat(1001);
+                    //buffmat.AddItem(2);
+                    //buffmat.AddItem("通过组合数据包通讯，GUID is object");
+                    //buffmat.AddItem(Guid.NewGuid());
+
+                    //client.SendTo(buffmat.Finish()); //用组合数据包模拟PPO对象
 
                     // Console.ReadLine();
 
-                    BufferFormat buffmat = new BufferFormat(1001);
-                    buffmat.AddItem(2);
-                    buffmat.AddItem("通过组合数据包通讯，GUID is object");
-                    buffmat.AddItem(Guid.NewGuid());
-
-                    client.SendTo(buffmat.Finish()); //用组合数据包模拟PPO对象
-
-                    // Console.ReadLine();
-
-                    BufferFormat buffmat2 = new BufferFormat(1002);
-                    buffmat2.AddItem(3);
-                    buffmat2.AddItem("通过组合数据包通讯 all buff");
-                    buffmat2.AddItem(Guid.NewGuid().ToString());
-                    client.SendTo(buffmat2.Finish()); //用组合数据包模拟PPO对象 但GUID 是字符串类型
+                    //BufferFormat buffmat2 = new BufferFormat(1002);
+                    //buffmat2.AddItem(3);
+                    //buffmat2.AddItem("通过组合数据包通讯 all buff");
+                    //buffmat2.AddItem(Guid.NewGuid().ToString());
+                    //client.SendTo(buffmat2.Finish()); //用组合数据包模拟PPO对象 但GUID 是字符串类型
 
                 }
 
@@ -82,6 +81,6 @@ namespace SocketClinetTest
     {
         public int Id { get; set; }
         public string Message { get; set; }
-        public List<Guid> guid { get; set; }
+        public Guid guid { get; set; }
     }
 }

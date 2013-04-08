@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarFramework.Core", "TarFramework.Core\TarFramework.Core.csproj", "{1F4AE8A6-C59A-4F77-BA9A-10D2B6D65842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarFramwork.Addin", "TarFramwork.Addin\TarFramwork.Addin.csproj", "{AA2AE1CB-5B6C-4060-95FC-1CAB20DC8BF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarFramework.Addin", "TarFramwork.Addin\TarFramework.Addin.csproj", "{AA2AE1CB-5B6C-4060-95FC-1CAB20DC8BF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarFramework.T-araNet", "TarFramework.T-araNet\TarFramework.T-araNet.csproj", "{2AAEC711-417D-43D3-B9D2-060E71CFDE3B}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketTest", "SocketTest\SocketTest.csproj", "{4112EA02-8420-4F6F-99E4-91EF05938ECC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketClinetTest", "SocketClinetTest\SocketClinetTest.csproj", "{2A7B3555-6FED-4533-8D81-383F5D9109A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThridLib", "ThridLib", "{49E5B9EA-CECE-4A88-8E8E-17A3E1FF663A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpSerializer.Library", "sharpSerializerSolution\SharpSerializer.Library\SharpSerializer.Library.csproj", "{88AB738F-7A36-4C93-B808-B6CE2D3444B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,8 +47,15 @@ Global
 		{2A7B3555-6FED-4533-8D81-383F5D9109A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A7B3555-6FED-4533-8D81-383F5D9109A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A7B3555-6FED-4533-8D81-383F5D9109A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88AB738F-7A36-4C93-B808-B6CE2D3444B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88AB738F-7A36-4C93-B808-B6CE2D3444B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88AB738F-7A36-4C93-B808-B6CE2D3444B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88AB738F-7A36-4C93-B808-B6CE2D3444B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88AB738F-7A36-4C93-B808-B6CE2D3444B2} = {49E5B9EA-CECE-4A88-8E8E-17A3E1FF663A}
 	EndGlobalSection
 EndGlobal

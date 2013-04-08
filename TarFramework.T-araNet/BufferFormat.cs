@@ -41,7 +41,7 @@ namespace TarFramework.T_araNet.IOCP
         {
             buffList = new List<byte>();
             buffList.AddRange(GetSocketBytes(buffType));
-            Encode = Encoding.Unicode;
+            Encode = Encoding.UTF8;
             finish = false;
             this.dataextra = dataExtra;
         }
@@ -55,7 +55,7 @@ namespace TarFramework.T_araNet.IOCP
         {
             buffList = new List<byte>();
             buffList.AddRange(GetSocketBytes(buffType));
-            Encode = Encoding.Unicode;
+            Encode = Encoding.UTF8;
             finish = false;
         }
 
@@ -269,11 +269,11 @@ namespace TarFramework.T_araNet.IOCP
                 {
                     var bufflist = new List<byte>();
 
-                    bufflist.AddRange(GetSocketBytes(0x3e8));
+                    bufflist.AddRange(GetSocketBytes(1000)); // cmd 命令
 
-                    byte[] classdata = SerializeObject(o);
-                    bufflist.AddRange(GetSocketBytes(classdata.Length));
-                    bufflist.AddRange(classdata);
+                    byte[] classdata = SerializeObject(o); 
+                    bufflist.AddRange(GetSocketBytes(classdata.Length)); // 包大小
+                    bufflist.AddRange(classdata); //包体
 
                     if (dataExtra != null)
                     {
@@ -350,18 +350,18 @@ namespace TarFramework.T_araNet.IOCP
         /// </summary>
         /// <param name="pObj">需要序列化的对象</param>
         /// <returns>byte[]</returns>
-        public static byte[] SerializeObject(object pObj)
-        {
-            var _memory = new MemoryStream();
-            var formatter = new BinaryFormatter();
-            // formatter.TypeFormat=System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString;
-            formatter.Serialize(_memory, pObj);
-            _memory.Position = 0;
-            byte[] read = new byte[_memory.Length];
-            _memory.Read(read, 0, read.Length);
-            _memory.Close();
-            return read;
-        }
+        //public static byte[] SerializeObject(object pObj)
+        //{
+        //    var _memory = new MemoryStream();
+        //    var formatter = new BinaryFormatter();
+        //    // formatter.TypeFormat=System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString;
+        //    formatter.Serialize(_memory, pObj);
+        //    _memory.Position = 0;
+        //    byte[] read = new byte[_memory.Length];
+        //    _memory.Read(read, 0, read.Length);
+        //    _memory.Close();
+        //    return read;
+        //}
 
 
         /// <summary>
@@ -369,8 +369,8 @@ namespace TarFramework.T_araNet.IOCP
         /// </summary>
         /// <param name="pObj">需要序列化的对象</param>
         /// <returns>byte[]</returns>
-        //public static byte[] SerializeObject(object pObj)
-        //{
+        public static byte[] SerializeObject(object pObj)
+        {
 
         //    //StringBuilder sBuilder = new StringBuilder();
 
@@ -383,10 +383,10 @@ namespace TarFramework.T_araNet.IOCP
 
         //    //return Encoding.UTF8.GetBytes(sBuilder.ToString());
 
-        //    Polenter.Serialization.SharpSerializer serializer = new Polenter.Serialization.SharpSerializer(true);
-        //    return serializer.Serialize(pObj);
+            Polenter.Serialization.SharpSerializer serializer = new Polenter.Serialization.SharpSerializer(true);
+            return serializer.Serialize(pObj);
 
-        //}
+        }
 
 
         #endregion
