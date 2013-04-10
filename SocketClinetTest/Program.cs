@@ -26,18 +26,37 @@ namespace SocketClinetTest
 
 
 
-                    var temp = new PPo();
-                    temp.Id = 2;
-                    temp.Message = "通过对象通讯";
-                    temp.guid =Guid.NewGuid();
+                    //var temp = new PPo();
+                    //temp.Id = 2;
+                    //temp.Message = "通过对象通讯";
+                    //temp.guid =Guid.NewGuid();
 
-                    //for (int i = 0; i < 100; i++)
-                    //{
-                    //    temp.guid.Add(Guid.NewGuid());
-                    //}
-                    client.SendTo(BufferFormat.FormatFCA(temp));  //讲一个PPO对象发送出去
+                    ////for (int i = 0; i < 100; i++)
+                    ////{
+                    ////    temp.guid.Add(Guid.NewGuid());
+                    ////}
+                    //client.SendTo(BufferFormat.FormatFCA(temp));  //讲一个PPO对象发送出去
 
                     // Console.ReadLine();
+                    string str = "通过组合数据包通讯，GUID is object";
+
+                    //BufferFormat buffmat = new BufferFormat(1001);
+                    //buffmat.AddItem(3);
+                    //buffmat.AddItem(str);
+                    //buffmat.AddItem(Guid.NewGuid());
+                    //client.SendTo(buffmat.Finish()); 
+
+                    List<byte> buffer = new List<byte>();
+                    buffer.AddRange(BitConverter.GetBytes(3));
+                    var data = Encoding.UTF8.GetBytes(str);
+                    buffer.AddRange(data);
+                    buffer.AddRange(BufferFormat.SerializeObject(Guid.NewGuid()));
+
+
+                    var p = new byte[buffer.Count];
+                    buffer.CopyTo(0, p,0, p.Length);
+
+                    client.SendTo(p);
 
                     //BufferFormat buffmat = new BufferFormat(1001);
                     //buffmat.AddItem(2);

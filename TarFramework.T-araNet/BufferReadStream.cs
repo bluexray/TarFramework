@@ -499,7 +499,7 @@ namespace TarFramework.T_araNet
                 if (res > 0)
                 {
 
-                    if (res > MaxSize)
+                     if (res > MaxSize)
                     {
                         throw new ArgumentOutOfRangeException("数据包大于预设长度，如果你传入的数据比较大，请设置重新 maxSize 值");
                     }

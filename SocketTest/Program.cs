@@ -50,7 +50,7 @@ namespace SocketTest
             byte[] pdata;
             while (buff.Read(out pdata))
             {
-                DataOn(pdata, socketAsync);
+                DataOn(data, socketAsync);
             }
 
             //string message = Encoding.UTF8.GetString(data);
@@ -82,14 +82,24 @@ namespace SocketTest
                     int id;
                     string mn;
                     SocketClinetTest.PPo  temp;
-                    if (read.ReadInt32(out id) && read.ReadObject<SocketClinetTest.PPo>(out temp))
+                    //if (read.ReadInt32(out id) && read.ReadObject<SocketClinetTest.PPo>(out temp))
+                    //{
+
+                    //    if (temp != null)
+                    //    {
+                    //        Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", temp.Id, temp.Message, temp.guid, read.Length);
+                    //    } 
+                    //}
+
+                    if (read.ReadObject<SocketClinetTest.PPo>(out temp))
                     {
 
                         if (temp != null)
                         {
                             Console.WriteLine("Id:{0}\r\n Mn:{1} \r\n Guid:{2} \r\n DataLength:{3} \r\n\r\n", temp.Id, temp.Message, temp.guid, read.Length);
-                        } 
+                        }
                     }
+
 
                     //根据命令读取数据包
                     //switch (cmd)
