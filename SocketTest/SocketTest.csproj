@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +52,10 @@
     <ProjectReference Include="..\SocketClinetTest\SocketClinetTest.csproj">
       <Project>{2a7b3555-6fed-4533-8d81-383f5d9109a8}</Project>
       <Name>SocketClinetTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TarFramework.Common\TarFramework.Common.csproj">
+      <Project>{d7e52cc6-1b55-4bcb-aaa9-3a5cb90623f6}</Project>
+      <Name>TarFramework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\TarFramework.T-araNet\TarFramework.T-araNet.csproj">
       <Project>{2aaec711-417d-43d3-b9d2-060e71cfde3b}</Project>

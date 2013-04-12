@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TarFramework.T_araNet.IOCP;
@@ -50,7 +51,7 @@ namespace SocketClinetTest
                     buffer.AddRange(BitConverter.GetBytes(3));
                     var data = Encoding.UTF8.GetBytes(str);
                     buffer.AddRange(data);
-                    buffer.AddRange(BufferFormat.SerializeObject(Guid.NewGuid()));
+                    buffer.AddRange(Guid.NewGuid().ToByteArray());
 
 
                     var p = new byte[buffer.Count];
@@ -91,15 +92,39 @@ namespace SocketClinetTest
 
         static void client_DataOn(byte[] Data)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();  
         }
     }
 
-    [Serializable]
+    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class PPo
     {
-        public int Id { get; set; }
-        public string Message { get; set; }
-        public Guid guid { get; set; }
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+
+        [MarshalAsAttribute(UnmanagedType.ByValTStr,SizeConst = 44)]
+        public string message;
+
+        public string Message
+        {
+            get { return message; }
+            set { message = value; }
+        }
+
+        [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 16)]
+        private string guid;
+
+        public string Guid
+        {
+            get { return guid; }
+            set { guid = value; }
+        }
     }
 }
